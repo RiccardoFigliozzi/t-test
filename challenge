@@ -1,0 +1,23 @@
+# import library
+library(tidyverse)
+
+# read in dataset
+cereals<- read_csv("../input/cereal.csv")
+
+# check out the first rows
+head(cereals)
+
+# now let's check for normality (points should be more or less on the center diagonal )
+qqnorm(cereals$sugars)
+
+# do the t-test to check if there is a difference b/w the 2 tipes of cereals
+t.test(cereals$sugars ~ cereals$type)
+
+# Reject the null hypothesis p-value is less than 0.05
+
+# finally plot an histogram of the type of cereals
+ggplot(cereals, aes(x= sugars, fill=type))+
+geom_histogram()+
+ggtitle("Sugar content by cereal type")
+
+You can find this exercise on Anthony Reese' Kaggle page: https://www.kaggle.com/studentar/kernels?sortBy=voteCount&group=everyone&pageSize=20&userId=1300506&language=R
